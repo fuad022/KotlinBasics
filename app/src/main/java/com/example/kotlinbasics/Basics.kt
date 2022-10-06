@@ -1,8 +1,7 @@
 package com.example.kotlinbasics
 
-import java.util.*
-
 fun main() {
+    /*
 //    var myNum = 5
 //    myNum += 3
 //
@@ -72,6 +71,33 @@ fun main() {
 //    val uni = String.format("u+%04x", char.code).uppercase()
     val uni = String.format("u+%04x", '#'.code).uppercase()
     println(uni)
+     */
+
+    /*
+//    val instant =  Instant.parse("2018-01-28T08:00:59.394Z")
+//    println(instant)
+
+//    val ldt = LocalDateTime.parse("2018-01-28T08:00:59.394Z")
+//    val instant = ldt.atZone(ZoneId.systemDefault()).toInstant()
+
+//    val zonedDateTime = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//        ZonedDateTime.parse("2018-01-28T08:00:59.394Z")
+//    } else {
+//        TODO("VERSION.SDK_INT < O")
+//    }
+
+//    val monthList = ArrayList<String>()
+//    monthList.add("January")
+//    monthList.add("February")
+//    monthList.add("March")
+//    monthList.add("April")
+//    monthList.add("May")
+//    println(monthList)
+//    monthList.clear()
+//    println(monthList.isEmpty())*/
+
+    val str = "aa ddd "
+    println(str.trim().length)
 }
 
 class Person {
@@ -80,6 +106,17 @@ class Person {
         set(value) {
             field = value
         }
+}
+
+fun isNullOrZero(number: Number?): Boolean {
+    return number == null ||
+            when (number) {
+                is Int -> number.toInt() == 0
+                is Long -> number.toLong() == 0L
+                is Double -> number.toDouble() == 0.0
+                is Short -> number.toShort().toInt() == 0
+                else -> number.toFloat() == 0f
+            }
 }
 
 fun tribonacci(n: Int): Int {
