@@ -96,8 +96,45 @@ fun main() {
 //    monthList.clear()
 //    println(monthList.isEmpty())*/
 
-    val str = "aa ddd "
-    println(str.trim().length)
+//    val str = "aa ddd "
+//    println(str.trim().length)
+
+    /*
+    val url = "https://ib.rabitabank.com/MobileApi?svc=ips&signlist=ecd%2Cpanmask%2Crnd%2Csvc%2Csignlist" +
+            "%2Cfp&ecd=EURM9l9Ic599OYlNwZoMpwtgynOdCMKbKGl9uw6XlVAx8QbcMfBPR5mZfg3s-fmvl_fYsTZAhLXymeC6" +
+            "uhYnRcB5EWyfgwy4_mHv8eaEkZZKJVGmx3gk61iO2yviMvb3-xhU4Ys4BgdaFvWbSZm3E6HozN4anEz_HbIuYsK4_E8kp" +
+            "bgMli9IYoH5qP-8fi5kQvOB3wV4Zyj1shwEsMBMfRmcM6rlsSbsGL6qVnTCiQXEjwAPvBFmzfQLORybbtzm7zQGYUTHBx" +
+            "QOsswXMZf95kvuSwN-71E3k_u3ZQ31kGpL4iD5awIhAVY_mh-CSNHJ5aGBWGW0IU4hi8ex4SC_dvE%3D&panmask=*89" +
+            "91&sign=R4ycT4fdRQoC3NBpdtkqNVsJAojgEs9aTjxu6ZKzy57TCUgAbHOMa1RUDErdN23Q-EfPdhwqgUmSTSdvh4jTj" +
+            "_18WowExON_QP0BDjLebzERplrOLFcCrHb8cjcCey35WcY9dLW9AZt_CXd-olD66hd9NTxGGuggQjR3j5BtnPDJ-vSjai" +
+            "PGYR-n4J_0yQL9oYr2W-fdZmHgSLMiWJjtHP30nG1U41Igj7ZFZGcNd5NOfsWBjZ-jUrxTOAApotqNXx7VIcHMO14rWBH" +
+            "wwjoTkWH0_vqhIFAL_XDc2QKlHILRK-BYs8kXSAOnUi1tmkhHDsjdGsZuJsNofL0eNaa2Iw%3D%3D&fp=jIjXJRf9fks5" +
+            "5aAOPG3a3TaGOrh4alBf5K0n9lZgTGfe2V3Z4AUG-Pu_ngLCbjphqRwbi2-uKJmv8Sxck5Zs0_y3U9vIJoC0d46jl8wnLb6" +
+            "9F3FZX-2bWKFhX8g_OTkHDTFJ1jigc94kHhG-jD7GQsIyKpc39Ur3F4qcGmr5HPRZSrFD0oA7JBBVhNeLrqTtZlqa8zz0jC-9ppMDwFGJlg%3D%3D"
+
+    var ecd = ""
+    var maskedPan = ""
+
+    for (str in url.split("&")) {
+        if (str.contains("ecd=")) {
+            ecd = str.substring(str.lastIndexOf('=') + 1)
+        } else if (str.contains("panmask=")) {
+            maskedPan = str.substring(str.lastIndexOf('=') + 1)
+        }
+    }
+    println(ecd)
+    println(" ")
+    println(maskedPan)*/
+
+
+    println(getRandomAlphanumericString(5))
+}
+
+fun getRandomAlphanumericString(length: Int): String {
+    val chars = ('A'..'Z') + ('a'..'z') + ('0'..'9')
+    return (1..length)
+        .map { chars.random() }
+        .joinToString("")
 }
 
 class Person {
