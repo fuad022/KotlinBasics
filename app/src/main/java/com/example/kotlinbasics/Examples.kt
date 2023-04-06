@@ -2,7 +2,7 @@ package com.example.kotlinbasics
 
 fun main() {
 
-    println(getRepeatedIntersection(intArrayOf(1, 2, 3, 2, 0), intArrayOf(5, 1, 2, 7, 3, 2)))
+//    println(getRepeatedIntersection(intArrayOf(1, 2, 3, 2, 0), intArrayOf(5, 1, 2, 7, 3, 2)))
 
 //    println(minOf(5, 2))
 }
@@ -26,3 +26,5 @@ fun getRepeatedIntersection(a1: IntArray, a2: IntArray): List<Int> {
 
     return result
 }
+
+

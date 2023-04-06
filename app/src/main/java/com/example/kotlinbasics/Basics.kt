@@ -1,5 +1,12 @@
 package com.example.kotlinbasics
 
+import android.graphics.Color
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.ForegroundColorSpan
+import java.text.SimpleDateFormat
+import java.util.*
+
 fun main() {
     /*
 //    var myNum = 5
@@ -126,8 +133,68 @@ fun main() {
     println(" ")
     println(maskedPan)*/
 
+/*
+//    println(getRandomAlphanumericString(5))
 
-    println(getRandomAlphanumericString(5))
+//    val a = 5.5
+//    val b = 3.5
+
+//    val time = Calendar.getInstance().time
+//    val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+//    val current = formatter.format(time)
+//
+//    val simpleDate = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+//    val currentDate = simpleDate.format(Date())
+//
+//    println(time)
+//    println(currentDate)
+
+//    val words = listOf("Cashback1", "Cashback2", "Cashback3")
+//    val pattern = "Cashback1".toRegex()
+//
+//    words.forEach { word ->
+//        if (pattern.containsMatchIn(word)) {
+//            println("$word matches")
+//        }
+//    }
+
+/*    val a = "Cashback14"
+    val b = 1
+
+    if ((a == "Cashback1" || a == "Cashback2" || a == "Cashback3") && b >= 1) {
+        println("match")
+    } else {
+        println("no match")
+    }*/
+
+//    println(a == "Cashback1")
+
+//    initPaddingStatusTxt()*/
+
+    /*val b = "Cashback1"
+    val c = "Cashback2"
+
+    val a = "${b}\n\n${c}"
+    println(a)*/
+
+}
+
+private fun initPaddingStatusTxt() {
+    val pending = "Test"
+    var pending_d = "Text"
+
+    pending_d = String.format(pending_d, 20)
+    val start = pending_d.indexOf(pending)
+    val end = pending_d.indexOf(pending) + pending.length
+    val spannableString = SpannableString(pending_d)
+    spannableString.setSpan(
+        ForegroundColorSpan(Color.parseColor("#ffc45e")),
+        start,
+        end,
+        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+    )
+
+    println(spannableString.toString())
 }
 
 fun getRandomAlphanumericString(length: Int): String {
@@ -137,13 +204,13 @@ fun getRandomAlphanumericString(length: Int): String {
         .joinToString("")
 }
 
-class Person {
-    var name: String = "defaultValue"
-        get() = field
-        set(value) {
-            field = value
-        }
-}
+//class Person {
+//    var name: String = "defaultValue"
+//        get() = field
+//        set(value) {
+//            field = value
+//        }
+//}
 
 fun isNullOrZero(number: Number?): Boolean {
     return number == null ||

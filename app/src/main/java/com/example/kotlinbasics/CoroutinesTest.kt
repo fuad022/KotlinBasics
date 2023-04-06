@@ -38,6 +38,14 @@ import javax.security.auth.callback.Callback
 //
 //private object NoValue
 
+fun main() = runBlocking {
+    launch {
+        delay(1000L)
+        println("World!")
+    }
+    println("Hello")
+}
+
 interface Request<T> {
     fun execute(callback: Callback<T>)
     fun cancel()
