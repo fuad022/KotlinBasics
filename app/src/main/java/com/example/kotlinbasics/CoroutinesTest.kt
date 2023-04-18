@@ -41,7 +41,7 @@ import javax.security.auth.callback.Callback
 fun main() = runBlocking {
     launch {
         delay(1000L)
-        println("World!")
+        println("World")
     }
     println("Hello")
 }

@@ -177,6 +177,37 @@ fun main() {
     val a = "${b}\n\n${c}"
     println(a)*/
 
+//    printType<String>()
+//    printType<Int>()
+
+    val list: List<Any> = listOf("hello", 1, true)
+    val result: Boolean? = findFirst<Boolean>(list)
+//    println(result)
+
+    val a = PositiveInt(10)
+    val b = PositiveInt(-5)
+}
+
+@JvmInline
+value class PositiveInt(val value: Int) {
+    init {
+        require(value > 0) {
+            "Value must be positive" // IllegalArgumentException
+        }
+    }
+}
+
+inline fun <reified T> printType() {
+    println(T::class.simpleName)
+}
+
+inline fun <reified T> findFirst(list: List<Any>): T? {
+    for (element in list) {
+        if (element is T) {
+            return element
+        }
+    }
+    return null
 }
 
 private fun initPaddingStatusTxt() {
