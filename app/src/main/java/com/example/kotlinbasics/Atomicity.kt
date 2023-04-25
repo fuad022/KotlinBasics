@@ -24,6 +24,7 @@ fun main() {
         it.join()
     }
 
+    
     // Выводим результат
     println("Counter value: ${counter.get()}")
 }
