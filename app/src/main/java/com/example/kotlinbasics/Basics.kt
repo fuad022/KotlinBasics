@@ -185,14 +185,15 @@ fun main() {
 //    println(result)
 
     val a = PositiveInt(10)
-    val b = PositiveInt(-5)
+//    val b = PositiveInt(-5) // This code commented
+    val c = PositiveInt(15) // This code added
 }
 
 @JvmInline
 value class PositiveInt(val value: Int) {
     init {
         require(value > 0) {
-            "Value must be positive" // IllegalArgumentException
+            "Value must be positive. And this text for test." // IllegalArgumentException
         }
     }
 }
