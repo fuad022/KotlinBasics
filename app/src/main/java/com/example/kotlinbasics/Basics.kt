@@ -187,6 +187,8 @@ fun main() {
     val a = PositiveInt(10)
 //    val b = PositiveInt(-5) // This code commented
     val c = PositiveInt(15) // This code added
+
+    testMessage()
 }
 
 @JvmInline
@@ -280,4 +282,8 @@ fun tribonacciNumber(num: Int): Int {
     return tribonacciNumber(num - 1) +
             tribonacciNumber(num - 2) +
             tribonacciNumber(num - 3)
+}
+
+fun testMessage() {
+    println("This is test message")
 }
