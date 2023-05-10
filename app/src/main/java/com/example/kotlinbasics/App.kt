@@ -8,39 +8,39 @@ import kotlin.collections.LinkedHashSet
 val userModelList = ArrayList<User>()
 val secondList = ArrayList<User>()
 fun main() {
-/*    println("Hello Kotlin")
+    /*    println("Hello Kotlin")
 
-    val items = listOf("apple", "banana", "orange")
-    mutableListOf("apple", "banana", "orange")
+        val items = listOf("apple", "banana", "orange")
+        mutableListOf("apple", "banana", "orange")
 
-    println(items)
+        println(items)
 
-    var a: String = "Hello"
-    var b: String? = "Test"
-    b = null
+        var a: String = "Hello"
+        var b: String? = "Test"
+        b = null
 
-    b?.length
+        b?.length
 
-    val l = b?.length ?: -1
+        val l = b?.length ?: -1
 
-    b = if ((0..10).random() > 5) "asdf" else null
-    val t = b!!.length
+        b = if ((0..10).random() > 5) "asdf" else null
+        val t = b!!.length
 
-    testWhen(1)
-    testWhen("Hello")
+        testWhen(1)
+        testWhen("Hello")
 
-    val a = 10
-    val b = 10
-    val c = if (a > b) {
-        println("a = $a")
-        a
-    } else {
-        println("b = $b")
-        b
-    }
+        val a = 10
+        val b = 10
+        val c = if (a > b) {
+            println("a = $a")
+            a
+        } else {
+            println("b = $b")
+            b
+        }
 
-    val x = intArrayOf(1, 4)
-    print(x.average()) */
+        val x = intArrayOf(1, 4)
+        print(x.average()) */
 
     /*
     // List start
@@ -106,16 +106,27 @@ fun main() {
 //    else
 //        println("$num is odd")
 
-    val a = arrayOf("a", "a", "b", "c", "c")
-    val b1 = a.distinct()
-    val b2 = a.toSet()
-    val b3 = a.toMutableSet()
-    val b4 = a.toHashSet()
-    println(b1)
-    println(b2)
-    println(b3)
-    println(b4)
+//    val a = arrayOf("a", "a", "b", "c", "c")
+//    val b1 = a.distinct()
+//    val b2 = a.toSet()
+//    val b3 = a.toMutableSet()
+//    val b4 = a.toHashSet()
+//    println(b1)
+//    println(b2)
+//    println(b3)
+//    println(b4)
 
+    val list1 = listOf(
+        Item(1, "Item 1"),
+        Item(2, "Item 2"),
+        Item(3, "Item 3"),
+        Item(4, "Item 4"),
+        Item(5, "Item 5")
+    )
+    val list2 = listOf(3, 5)
+
+    val filteredList = list1.filter { item -> !list2.contains(item.id) }
+    println("The matches of list1 and list2 are: $filteredList")
 }
 
 private fun setupUsers(): ArrayList<User> {
@@ -125,6 +136,8 @@ private fun setupUsers(): ArrayList<User> {
     userModelList.add(User("Frank", "Francis", true))
     return userModelList
 }
+
+data class Item(val id: Int, val name: String)
 
 //fun testWhen(input: Any) {
 //    when (input) {
