@@ -1,5 +1,6 @@
 package com.example.kotlinbasics
 
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashSet
@@ -127,6 +128,14 @@ fun main() {
 
     val filteredList = list1.filter { item -> !list2.contains(item.id) }
     println("The matches of list1 and list2 are: $filteredList")
+
+    println(getCurrentDateTime())
+}
+
+fun getCurrentDateTime(): String {
+    val currentDateTime = Calendar.getInstance().time
+    val formatter = SimpleDateFormat("dd MMMM yyyy, HH:mm", Locale.getDefault())
+    return formatter.format(currentDateTime)
 }
 
 private fun setupUsers(): ArrayList<User> {
