@@ -1,7 +1,9 @@
 package com.example.kotlinbasics
 
 fun main() {
-    println(groupWords(arrayOf("eat", "tea", "tan", "ate", "nat", "bat")))
+//    println(groupWords(arrayOf("eat", "tea", "tan", "ate", "nat", "bat")))
+
+    println("Test message")
 }
 
 fun groupWords(words: Array<String>): List<List<String>> {
