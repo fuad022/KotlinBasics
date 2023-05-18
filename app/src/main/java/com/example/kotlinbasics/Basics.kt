@@ -180,12 +180,14 @@ fun main() {
 //    printType<String>()
 //    printType<Int>()
 
-    val list: List<Any> = listOf("hello", 1, true)
-    val result: Boolean? = findFirst<Boolean>(list)
-//    println(result)
+//    val list: List<Any> = listOf("hello", 1, true)
+//    val result: Boolean? = findFirst<Boolean>(list)
+////    println(result)
+//
+//    val a = PositiveInt(10)
+//    val b = PositiveInt(-5)
 
-    val a = PositiveInt(10)
-    val b = PositiveInt(-5)
+    println("Hello")
 }
 
 @JvmInline
