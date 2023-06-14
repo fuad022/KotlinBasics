@@ -1,4 +1,4 @@
-@file:Suppress("unused")
+//@file:Suppress("unused")
 
 package com.example.kotlinbasics
 
@@ -10,6 +10,28 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import java.util.*
 import javax.security.auth.callback.Callback
+
+suspend fun main() {
+    doSomeWork()
+}
+
+suspend fun doSomeWork() {
+    supervisorScope {
+        launch {
+            delay(1000)
+            println("Tasl 1 completed")
+        }
+        launch {
+            delay(2000)
+            throw Exception("Error")
+        }
+        launch {
+            delay(3000)
+            println("Task 3 completed")
+        }
+    }
+    println("All tasks completed")
+}
 
 //fun main(): Unit = runBlocking {
 //    val coroutines: List<Deferred<String>> = List(100) {
@@ -35,16 +57,15 @@ import javax.security.auth.callback.Callback
 //        }
 //    }
 //}
-//
-//private object NoValue
 
+/*
 fun main() = runBlocking {
     launch {
         delay(1000L)
         println("World")
     }
     println("Hello")
-}
+}*/
 
 interface Request<T> {
     fun execute(callback: Callback<T>)
