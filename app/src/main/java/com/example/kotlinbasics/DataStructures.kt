@@ -2,6 +2,7 @@ package com.example.kotlinbasics
 
 import java.security.MessageDigest
 import java.util.LinkedList
+import java.util.PriorityQueue
 import java.util.Queue
 import java.util.Stack
 
@@ -41,24 +42,28 @@ fun main() {
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //    example6()
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//    push(1)
-//    push(2)
-//    push(3)
-//
-//    println(peek()) // Выведет 3
-//
-//    println(pop()) // Выведет 3
-//    println(pop()) // Выведет 2
-//
-//    println(isEmpty()) // Выведет false
-//    println(size()) // Выведет 1
+    /*push(1)
+    push(2)
+    push(3)
+
+    println(peek()) // Выведет 3
+
+    println(pop()) // Выведет 3
+    println(pop()) // Выведет 2
+
+    println(isEmpty()) // Выведет false
+    println(size()) // Выведет 1*/
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //    example14()
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Пример использования
+    /*// Пример использования
     val inputString = "Hello, world!"
     val sha256Hash = generateSHA256Hash(inputString)
-    println(sha256Hash)
+    println(sha256Hash)*/
+    //////////////////////////////////////  Priority Queue  //////////////////////////////////////////////////////////
+//    example15()
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    example16()
 }
 
 fun reverse(list: Array<Int>): List<Int> {
@@ -329,4 +334,166 @@ fun generateSHA256Hash(input: String): String {
         stringBuilder.append(String.format("%02x", byte))
     }
     return stringBuilder.toString()
+}
+
+//////////////////////////////////////  Priority Queue  ////////////////////////////////////////////////////////////////
+// Класс для элемента в приоритетной очереди
+data class PriorityQueueItem(val value: Int, val priority: Int)
+
+fun example15() {
+    // Создание приоритетной очереди
+    val priorityQueue = PriorityQueue<PriorityQueueItem> { item1, item2 ->
+        item2.priority - item1.priority // Сравнение элементов по приоритету в обратном порядке
+    }
+
+    // Добавление элементов с приоритетом
+    priorityQueue.add(PriorityQueueItem(1, 5))
+    priorityQueue.add(PriorityQueueItem(2, 3))
+    priorityQueue.add(PriorityQueueItem(3, 8))
+    priorityQueue.add(PriorityQueueItem(4, 1))
+
+    // Извлечение элементов с наивысшим приоритетом
+    while (priorityQueue.isNotEmpty()) {
+        val item = priorityQueue.poll()
+        println("Value: ${item.value}, Priority: ${item.priority}")
+    }
+}
+
+//////////////////////////////////////  Tree  ////////////////////////////////////////////////////////////////
+//AVL tree
+// Определение класса узла дерева
+class AVLNode<T>(val value: T) {
+    var left: AVLNode<T>? = null
+    var right: AVLNode<T>? = null
+    var height: Int = 1
+}
+
+// Определение класса АВЛ-дерева
+class AVLTree<T : Comparable<T>> {
+    var root: AVLNode<T>? = null
+
+    // Вычисление высоты узла
+    private fun height(node: AVLNode<T>?): Int {
+        return node?.height ?: 0
+    }
+
+    // Вычисление баланса узла
+    private fun getBalance(node: AVLNode<T>?): Int {
+        return height(node?.left) - height(node?.right)
+    }
+
+    // Выполнение поворота влево
+    private fun rotateLeft(z: AVLNode<T>): AVLNode<T> {
+        val y = z.right
+        val T2 = y?.left
+
+        y?.left = z
+        z.right = T2
+
+        z.height = maxOf(height(z.left), height(z.right)) + 1
+        y?.height = maxOf(height(y?.left), height(y?.right)) + 1
+
+        return y ?: z
+    }
+
+    // Выполнение поворота вправо
+    private fun rotateRight(z: AVLNode<T>): AVLNode<T> {
+        val y = z.left
+        val T3 = y?.right
+
+        y?.right = z
+        z.left = T3
+
+        z.height = maxOf(height(z.left), height(z.right)) + 1
+        y?.height = maxOf(height(y?.left), height(y?.right)) + 1
+
+        return y ?: z
+    }
+
+    // Вставка узла в дерево
+    fun insert(value: T) {
+        root = insertNode(root, value)
+    }
+
+    private fun insertNode(node: AVLNode<T>?, value: T): AVLNode<T> {
+        if (node == null) {
+            return AVLNode(value)
+        }
+
+        if (value < node.value) {
+            node.left = insertNode(node.left, value)
+        } else if (value > node.value) {
+            node.right = insertNode(node.right, value)
+        } else {
+            return node // Дубликаты не допускаются
+        }
+
+        node.height = 1 + maxOf(height(node.left), height(node.right))
+
+        val balance = getBalance(node)
+
+        // Проверка нарушения баланса
+        if (balance > 1 && value < node.left!!.value) {
+            return rotateRight(node)
+        }
+
+        if (balance < -1 && value > node.right!!.value) {
+            return rotateLeft(node)
+        }
+
+        if (balance > 1 && value > node.left!!.value) {
+            node.left = rotateLeft(node.left!!)
+            return rotateRight(node)
+        }
+
+        if (balance < -1 && value < node.right!!.value) {
+            node.right = rotateRight(node.right!!)
+            return rotateLeft(node)
+        }
+
+        return node
+    }
+
+    // Поиск элемента в дереве
+    fun search(value: T): Boolean {
+        return searchNode(root, value)
+    }
+
+    private fun searchNode(node: AVLNode<T>?, value: T): Boolean {
+        if (node == null) {
+            return false
+        }
+
+        if (value == node.value) {
+            return true
+        } else if (value < node.value) {
+            return searchNode(node.left, value)
+        } else {
+            return searchNode(node.right, value)
+        }
+    }
+}
+
+fun example16() {
+    val tree = AVLTree<Int>()
+
+    // Вставка элементов
+    tree.insert(10)
+    tree.insert(20)
+    tree.insert(30)
+    tree.insert(40)
+    tree.insert(50)
+
+    // Поиск элемента
+    val found = tree.search(50)
+    if (found) {
+        println("Element found")
+    } else {
+        println("Element not found")
+    }
+}
+
+//////////////////////////////////////  Graph  ////////////////////////////////////////////////////////////////
+fun example17() {
+
 }
