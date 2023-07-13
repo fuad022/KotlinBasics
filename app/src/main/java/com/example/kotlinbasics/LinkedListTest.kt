@@ -17,17 +17,17 @@ fun main() {
     println()
 
     //Accessing elements
-//    println(linkedList.peekFirst())
-//    println(linkedList.peekLast())
+    println(linkedList.peekFirst() ?: 0)
+    println(linkedList.peekLast() ?: 0)
 
     //Removing elements
-//    linkedList.removeFirst()
-//    linkedList.removeLast()
-//    linkedList.remove()
-//
-//    linkedList.pollFirst()
-//    linkedList.pollLast()
-//    linkedList.poll()
+    linkedList.removeFirst()
+    linkedList.removeLast()
+    linkedList.remove()
+
+    linkedList.pollFirst()
+    linkedList.pollLast()
+    linkedList.poll()
 
     for (number in linkedList) {
         print("$number ")
