@@ -10,6 +10,19 @@ fun main() {
     arr[3] = 4
     arr[4] = 5
     println(arr.contentToString())
+
+
+    val numbers = listOf(1, 2, 3, 4, 5)
+
+    // Пример с использованием it в лямбда-выражении
+    val squaredNumbers = numbers.map { it * it }
+
+    // Пример с использованием it в аргументе функции
+    fun printNumber(number: Int) {
+        println("Number: $number")
+    }
+
+    numbers.forEach { printNumber(it) }
 }
 
 fun countLetters(str: String): String {
