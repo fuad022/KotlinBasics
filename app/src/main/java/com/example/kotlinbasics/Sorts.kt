@@ -4,7 +4,7 @@ fun main() {
 //    val list = bubbleSort(intArrayOf(2, 15, 1, 8, 4))
 //    val list = selectionSort(intArrayOf(2, 15, 1, 8, 4))
 //    val list = insertionSort(intArrayOf(2, 15, 1, 8, 4, 56, 454, 6, 44))
-//    for (k in list) print("$k ")
+//    println(list.contentToString())
 
 //    val numbers = mutableListOf(38, 27, 43, 3, 9, 82, 10)
 //    val sortedList = mergeSort(numbers)
