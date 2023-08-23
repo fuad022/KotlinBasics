@@ -1,13 +1,15 @@
 package com.example.kotlinbasics
 
-class MySingleton private constructor(private val param: String) {
+class MySingleton private constructor() {
+    // Initialize any properties or methods here
+
     companion object {
         @Volatile
         private var instance: MySingleton? = null
 
-        fun getInstance(param: String): MySingleton {
+        fun getInstance(): MySingleton {
             return instance ?: synchronized(this) {
-                instance ?: MySingleton(param).also {
+                instance ?: MySingleton().also {
                     instance = it
                 }
             }
