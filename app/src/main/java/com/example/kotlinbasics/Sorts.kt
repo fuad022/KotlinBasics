@@ -10,9 +10,13 @@ fun main() {
 //    val sortedList = mergeSort(numbers)
 //    println("$sortedList")
 
-    val numbers = listOf(2, 4, 7, 3, 6)
-    val ordered = quickSort(numbers)
-    println(ordered)
+//    val numbers = listOf(2, 4, 7, 3, 6)
+//    val ordered = quickSort(numbers)
+//    println(ordered)
+
+    val a = intArrayOf(7, 6, 9, 2, 4, 8, 1, 3, 5)
+    println("${a.contentToString()} initially")
+    PancakeSort(a)
 }
 
 fun bubbleSort(arr: IntArray): IntArray {
@@ -127,4 +131,40 @@ fun quickSort(items: List<Int>): List<Int> {
     }
 
     return quickSort(less) + equal + quickSort(greater)
+}
+
+class PancakeSort(private val a: IntArray) {
+    init {
+        for (n in a.size downTo 2) { // successively reduce size of array by 1
+            val index = indexOfMax(n)       // find index of largest
+            if (index != n - 1) {           // if it's not already at the end
+                if (index > 0) {            // if it's not already at the beginning
+                    flip(index)             // move largest to beginning
+                    println("${a.contentToString()} after flipping first ${index + 1}")
+                }
+                flip(n - 1)          // move largest to end
+                println("${a.contentToString()} after flipping first $n")
+            }
+        }
+    }
+
+    private fun indexOfMax(n: Int): Int {
+        var index = 0
+        for (i in 1 until n) {
+            if (a[i] > a[index]) index = i
+        }
+        return index
+    }
+
+    private fun flip(index: Int) {
+        var i = index
+        var j = 0
+        while (j < i) {
+            val temp = a[j]
+            a[j] = a[i]
+            a[i] = temp
+            j++
+            i--
+        }
+    }
 }
