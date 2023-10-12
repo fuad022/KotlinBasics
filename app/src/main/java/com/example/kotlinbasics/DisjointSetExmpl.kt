@@ -14,8 +14,8 @@ fun main() {
 
     disjointSet.union(2, 3)
 
-    println(disjointSet.union(0, 2)) // true
-    println(disjointSet.union(1, 3)) // true
+    println(disjointSet.isConnected(0, 2)) // true
+    println(disjointSet.isConnected(1, 3)) // true
 }
 
 class DisjointSet(size: Int) {
