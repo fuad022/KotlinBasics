@@ -246,16 +246,16 @@ fun getRandomAlphanumericString(length: Int): String {
 //        }
 //}
 
-fun isNullOrZero(number: Number?): Boolean {
-    return number == null ||
-            when (number) {
-                is Int -> number.toInt() == 0
-                is Long -> number.toLong() == 0L
-                is Double -> number.toDouble() == 0.0
-                is Short -> number.toShort().toInt() == 0
-                else -> number.toFloat() == 0f
-            }
-}
+//fun isNullOrZero(number: Number?): Boolean {
+//    return number == null ||
+//            when (number) {
+//                is Int -> number.toInt() == 0
+//                is Long -> number.toLong() == 0L
+//                is Double -> number.toDouble() == 0.0
+//                is Short -> number.toShort().toInt() == 0
+//                else -> number.toFloat() == 0f
+//            }
+//}
 
 fun tribonacci(n: Int): Int {
     val t = arrayOf(0, 1, 1)
