@@ -4,7 +4,27 @@ import java.util.PriorityQueue
 import kotlin.math.abs
 
 fun main() {
+    val grid = arrayOf(
+        intArrayOf(0, 0, 0, 0, 0),
+        intArrayOf(0, 1, 1, 0, 0),
+        intArrayOf(0, 0, 0, 1, 0),
+        intArrayOf(0, 1, 0, 0, 0),
+        intArrayOf(0, 0, 0, 0, 0)
+    )
 
+    val start = NodeAStar(0, 0)
+    val goal = NodeAStar(4, 4)
+
+    val path = aStar(start, goal, grid)
+
+    if (path.isNotEmpty()) {
+        println("Path found:")
+        for (node in path) {
+            println("(${node.x}, ${node.y})")
+        }
+    } else {
+        println("No path found")
+    }
 }
 
 data class NodeAStar(
@@ -28,9 +48,9 @@ fun aStar(start: NodeAStar, goal: NodeAStar, grid: Array<IntArray>): List<NodeAS
     while (openSet.isNotEmpty()) {
         val current = openSet.poll()
 
-//        if (current == goal) {
-//            return reconstructPath(current)
-//        }
+        if (current == goal) {
+            return reconstructPath(current)
+        }
 
         closedSet.add(current)
 
@@ -81,6 +101,14 @@ fun getDistance(nodeA: NodeAStar, nodeB: NodeAStar): Int {
     return dx + dy
 }
 
-//fun reconstructPath(node: NodeAStar): List<NodeAStar> {
-//
-//}
+fun reconstructPath(node: NodeAStar): List<NodeAStar> {
+    val path = mutableListOf<NodeAStar>()
+    var current: NodeAStar? = node
+
+    while (current != null) {
+        path.add(current)
+        current = current.parent
+    }
+
+    return path.reversed()
+}
