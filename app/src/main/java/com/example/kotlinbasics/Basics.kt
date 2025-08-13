@@ -245,6 +245,7 @@ fun getRandomAlphanumericString(length: Int): String {
 //        }
 //}
 
+// Some comment
 fun isNullOrZero(number: Number?): Boolean {
     return number == null ||
             when (number) {
