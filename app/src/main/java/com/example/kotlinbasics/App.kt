@@ -6,6 +6,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashSet
 import kotlin.collections.LinkedHashSet
+import kotlin.math.roundToInt
 
 val userModelList = ArrayList<User>()
 val secondList = ArrayList<User>()
@@ -140,18 +141,19 @@ fun main() {
 
 //    setPhoneNumber("+994706395485")
 
-    val double = 60.5
-    val debtAmount = double.toString().removePrefix("-")
+    val double = 60.51
+//    val debtAmount = double.toString().removePrefix("-")
+    val debtAmount = double.roundToInt()
     println(debtAmount)
 }
 
 fun setPhoneNumber(phone: String) =
     phone.trim().let {
         var formattedPhone = ""
-        when {
-            it.startsWith("+994") -> formattedPhone = it.removePrefix("+994")
-            it.startsWith("0") -> formattedPhone = it.removePrefix("0")
-            else -> formattedPhone = it
+        formattedPhone = when {
+            it.startsWith("+994") -> it.removePrefix("+994")
+            it.startsWith("0") -> it.removePrefix("0")
+            else -> it
         }
         println(formattedPhone)
     }
