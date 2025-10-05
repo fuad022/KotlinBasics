@@ -1,5 +1,6 @@
 package com.example.kotlinbasics
 
+import android.graphics.Color
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -117,19 +118,49 @@ fun main() {
 //    println(b3)
 //    println(b4)
 
-    val list1 = listOf(
-        Item(1, "Item 1"),
-        Item(2, "Item 2"),
-        Item(3, "Item 3"),
-        Item(4, "Item 4"),
-        Item(5, "Item 5")
-    )
-    val list2 = listOf(3, 5)
+//    val list1 = listOf(
+//        Item(1, "Item 1"),
+//        Item(2, "Item 2"),
+//        Item(3, "Item 3"),
+//        Item(4, "Item 4"),
+//        Item(5, "Item 5")
+//    )
+//    val list2 = listOf(3, 5)
+//
+//    val filteredList = list1.filter { item -> !list2.contains(item.id) }
+//    println("The matches of list1 and list2 are: $filteredList")
 
-    val filteredList = list1.filter { item -> !list2.contains(item.id) }
-    println("The matches of list1 and list2 are: $filteredList")
+//    println(getCurrentDateTime())
 
-    println(getCurrentDateTime())
+//    println(Color.parseColor("#FF5733"))
+
+//    val url = "https://isb.rabitabank.com/successcallback/property?contractNumber=PME2410663596&token=52306456-374c-4105-9da2-a66d75119493"
+//    val extractedValue = extractValueFromUrl(url)
+//    println("Извлечённое значение: $extractedValue")
+
+//    setPhoneNumber("+994706395485")
+
+    val double = 60.5
+    val debtAmount = double.toString().removePrefix("-")
+    println(debtAmount)
+}
+
+fun setPhoneNumber(phone: String) =
+    phone.trim().let {
+        var formattedPhone = ""
+        when {
+            it.startsWith("+994") -> formattedPhone = it.removePrefix("+994")
+            it.startsWith("0") -> formattedPhone = it.removePrefix("0")
+            else -> formattedPhone = it
+        }
+        println(formattedPhone)
+    }
+
+fun extractValueFromUrl(url: String): String? {
+    // Регулярное выражение для нахождения "successcallback" и извлечения значения между '=' и '&'
+    val regex = Regex("successcallback.*?=(.*?)&")
+    val matchResult = regex.find(url)
+    return matchResult?.groupValues?.get(1)
 }
 
 fun getCurrentDateTime(): String {

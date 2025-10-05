@@ -1,5 +1,7 @@
 package com.example.kotlinbasics
 
+import java.util.LinkedList
+
 fun main() {
 //    println(reverseString("Hello, World!"))
 //    println(isPalindrome(""))
@@ -22,10 +24,28 @@ fun main() {
 
 //    println(binarySearch(arrayOf(2, 4, 6, 8, 10, 12, 14), 10))
 
-    val array1 = arrayOf(1, 3, 5, 7)
-    val array2 = arrayOf(2, 4, 6, 8)
-    val mergedArray = mergeSortedArrays(array1, array2)
-    println(mergedArray.joinToString())
+//    val array1 = arrayOf(1, 3, 5, 7)
+//    val array2 = arrayOf(2, 4, 6, 8)
+//    val mergedArray = mergeSortedArrays(array1, array2)
+//    println(mergedArray.joinToString())
+
+//    val head = ListNode(1)
+//    val node1 = ListNode(2)
+//    val node2 = ListNode(3)
+//    val node3 = ListNode(4)
+//
+//    head.next = node1
+//    node1.next = node2
+//    node2.next = node3
+//
+//    var reversedHead = reverseLinkedList(head)
+//
+//    while (reversedHead != null) {
+//        print("${reversedHead.value} ")
+//        reversedHead = reversedHead.next
+//    }
+
+    println(findMissingNumber(arrayOf(1, 2, 3, 5, 6)))
 }
 
 /*
@@ -211,4 +231,40 @@ fun mergeSortedArrays(array1: Array<Int>, array2: Array<Int>): Array<Int> {
     }
 
     return mergedArray.toTypedArray()
+}
+
+/*
+Reverse Linked List: Given a singly linked list, write an algorithm function to reverse the list.
+ */
+class ListNode(var value: Int) {
+    var next: ListNode? = null
+}
+
+fun reverseLinkedList(head: ListNode?): ListNode? {
+    var prev: ListNode? = null
+    var current = head
+
+    while (current != null) {
+        val nextNode = current.next
+        current.next = prev
+        prev = current
+        current = nextNode
+    }
+
+    return prev
+}
+
+/*
+Find the Missing Number: Given an array of integers from 1 to n,
+where one number is missing, write a function to find the missing number.
+ */
+fun findMissingNumber(nums: Array<Int>): Int {
+    val n = nums.size + 1
+    var sum = n * (n + 1) / 2
+
+    for (num in nums) {
+        sum -= num
+    }
+
+    return sum
 }
